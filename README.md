@@ -1,6 +1,6 @@
 # Kotlin Docker container
 
-[](https://img.shields.io/github/v/tag/Poeschl/docker-kotlin?label=current%20version)
+![](https://img.shields.io/github/v/tag/Poeschl/docker-kotlin?label=current%20version)
 
 A docker container which contains an installed kotlin compiler for executing `.kts` scripts
 
