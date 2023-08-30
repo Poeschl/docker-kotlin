@@ -1,4 +1,4 @@
-FROM openjdk:17-slim as build
+FROM eclipse-temurin:17-jdk-jammy as build
 
 RUN apt-get update && apt-get -y --no-install-recommends install \
    wget unzip
@@ -8,7 +8,7 @@ RUN wget "https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSIO
     unzip kotlin-compiler-${KOTLIN_VERSION}.zip -d / && mv /kotlinc /usr/lib/
 
 
-FROM openjdk:17-slim as run
+FROM eclipse-temurin:17-jdk-jammy as run
 
 ENV PATH="/usr/lib/kotlinc/bin:${PATH}"
 COPY --from=build /usr/lib/kotlinc /usr/lib/kotlinc
