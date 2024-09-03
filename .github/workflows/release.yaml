@@ -24,9 +24,7 @@ jobs:
           tags: type=ref,event=tag
 
       - name: 🏗️ Install qemu dependency
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y qemu-user-static
+        uses: docker/setup-qemu-action@v3
 
       - name: ⚙️ Build Image
         id: build-image
