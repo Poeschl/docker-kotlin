@@ -3,6 +3,9 @@ on:
   push:
     tags:
       - "*.*.*"
+  pull_request:
+    branches:
+      - main
 
 jobs:
 
@@ -37,6 +40,7 @@ jobs:
           layers: false
 
       - name: 🔑 GHCR Login
+        if: github.ref == 'refs/heads/main'
         uses: redhat-actions/podman-login@v1
         with:
           registry: ghcr.io
@@ -45,12 +49,14 @@ jobs:
 
       - name: 🚀 Push images
         id: push-image
+        if: github.ref == 'refs/heads/main'
         uses: redhat-actions/push-to-registry@v2
         with:
           image: ${{ steps.build-image.outputs.image }}
           tags: ${{ steps.build-image.outputs.tags }}
 
       - name: 📢 Print images summary
+        if: github.ref == 'refs/heads/main'
         run: |
           echo "## Build and pushed images" >> $GITHUB_STEP_SUMMARY
           echo '${{ steps.push-image.outputs.registry-paths }}' >> $GITHUB_STEP_SUMMARY
