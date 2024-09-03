@@ -44,7 +44,13 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 🚀 Push images
+        id: push-image
         uses: redhat-actions/push-to-registry@v2
         with:
           image: ${{ steps.build-image.outputs.image }}
           tags: ${{ steps.build-image.outputs.tags }}
+
+      - name: 📢 Print images summary
+        run: |
+          echo "## Build and pushed images" >> $GITHUB_STEP_SUMMARY
+          echo '${{ steps.push-image.outputs.registry-paths }}' >> $GITHUB_STEP_SUMMARY
