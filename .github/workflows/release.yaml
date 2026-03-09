@@ -24,7 +24,7 @@ jobs:
           tags: type=ref,event=tag
 
       - name: 🏗️ Install qemu dependency
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
 
       - name: ⚙️ Build Image
         id: build-image
