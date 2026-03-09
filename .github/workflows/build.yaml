@@ -15,7 +15,7 @@ jobs:
       
       - name: ℹ️ Image meta
         id: docker-meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ghcr.io/poeschl/kotlin
           tags: type=ref,event=pr
